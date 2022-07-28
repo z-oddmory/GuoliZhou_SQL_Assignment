@@ -32,14 +32,8 @@ HAVING COUNT(od.OrderID) >=1
 
 
 /*4*/
-SELECT *
-FROM Customers
+----
 
-SELECT *
-FROM Orders
-
-SELECT *
-FROM [Order Details]
 /*ctrl k c ctrl k u*/ 
 
 SELECT TOP 5 c.PostalCode
@@ -127,6 +121,9 @@ GROUP BY p.ProductID, p.ProductName
 
 /*17?*/
 /*USE UNION*/
+SELECT c1.City FROM Customers c1 GROUP BY c1.City HAVING COUNT(c1.CustomerID) >= 2
+UNION 
+SELECT c2.City FROM Customers c2 GROUP BY c2.City HAVING COUNT(c2.CustomerID) >= 2
 
 /*NOT USE UNION*/
 
@@ -180,7 +177,7 @@ FROM Customers c LEFT JOIN Orders o ON c.CustomerID = o.CustomerID JOIN [Order D
 GROUP BY od.OrderID, c.City) AS t2
 GROUP BY t2.City) AS t3
 ON t1.City = t3.City
-ORDER BY t1.SoldOrder DESC, t3.TotalOrderQuantity DESC
+ORDER BY t1.SoldOrder DESC, t3.TotalOrderQuantity DESC /*Need to fix*/
 
 
 /*21*/
